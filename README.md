@@ -26,7 +26,7 @@ python -m pip install -e .
 
 ## Basic usage
 
-Let's prepare binned data (here we have 1 data for each bin, but in general we can have ndarray).
+Let's prepare binned data.
 
 ```python
 import numpy as np
