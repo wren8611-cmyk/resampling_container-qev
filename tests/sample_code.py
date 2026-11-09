@@ -22,12 +22,12 @@ bs = Bootstrap(
 
 # Results
 print("Jackknife:")
-print("  Centre:", jk.centres[0])
-print("  Error :", jk.error)
+print("  Centre:", jk.centre)
+print("  Error :", jk.error )
 
 print("\nBootstrap:")
-print("  Centre:", bs.centres[0])
-print("  Error :", bs.error)
+print("  Centre:", bs.centre)
+print("  Error :", bs.error )
 
 # Arithmatic
 print("\nArithmetic operations:")
@@ -37,21 +37,21 @@ jk2 = 2.0 * jk + 1.0
 jk3 = jk * jk
 
 print("\nJackknife (2 * jk + 1):")
-print("  Centre:", jk2.centres[0])
-print("  Error :", jk2.error)
+print("  Centre:", jk2.centre)
+print("  Error :", jk2.error )
 
 print("\nJackknife (jk * jk):")
-print("  Centre:", jk3.centres[0])
-print("  Error :", jk3.error)
+print("  Centre:", jk3.centre)
+print("  Error :", jk3.error )
 
 # Bootstrap
 bs2 = 2.0 * bs + 1.0
 bs3 = bs * bs
 
 print("\nBootstrap (2 * bs + 1):")
-print("  Centre:", bs2.centres[0])
-print("  Error :", bs2.error)
+print("  Centre:", bs2.centre)
+print("  Error :", bs2.error )
 
 print("\nBootstrap (bs * bs):")
-print("  Centre:", bs3.centres[0])
-print("  Error :", bs3.error)
+print("  Centre:", bs3.centre)
+print("  Error :", bs3.error )

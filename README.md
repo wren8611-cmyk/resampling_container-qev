@@ -47,7 +47,7 @@ data = [
 jk = Jackknife(data)
 
 print("Number of samples:", len(jk))
-print("Central value:", jk.centres[0])
+print("Central value:", jk.centre)
 print("Statistical error:", jk.error)
 ```
 
@@ -63,7 +63,7 @@ bs = Bootstrap(
 )
 
 print("Number of samples:", len(bs))
-print("Central value:", bs.centres[0])
+print("Central value:", bs.centre)
 print("Statistical error:", bs.error)
 ```
 
@@ -74,16 +74,17 @@ The optional `rng` argument accepts a NumPy `Generator` for reproducible resampl
 ## Arithmetic operations
 
 Both `Jackknife` and `Bootstrap` support elementwise addition, subtraction, multiplication, and division, including operations with numerical scalars.
+Resampling is only done at the first step (initialization of the first samples), and propagation is hadled correctly.
 
 ```python
 jk1 = Jackknife(data)
 jk2 = Jackknife(data)
 
 result = 2.0 * jk1 + jk2
-print("Central value:", result.centres[0])
+print("Central value:", result.centre)
 print("Statistical error:", result.error)
 #result = (2.0 * jk1) / jk2
-#print("Central value:", result.centres[0])
+#print("Central value:", result.centre)
 #print("Statistical error:", result.error)
 ```
 

@@ -72,6 +72,10 @@ class Bootstrap(Container):
             return error_real + 1j * error_imag
 
         return error_real
+    
+    @property
+    def centre(self):
+        return self.centres[0] if self.centres is not None else None
 
     # Arithmetic operations
     def _binary_op(self, other, op):
