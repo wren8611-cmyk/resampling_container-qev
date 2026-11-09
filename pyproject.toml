@@ -1,0 +1,16 @@
+[build-system]
+requires = ["setuptools>=61"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "resampling_container"
+version = "0.0.0"
+description = "A lightweight Python library for jackknife and bootstrap resampling"
+authors = [
+    {name = "Wren Yamada"}
+]
+requires-python = ">=3.10"
+dependencies = ["numpy>=1.23"]
+
+[tool.setuptools.packages.find]
+where = ["src"]

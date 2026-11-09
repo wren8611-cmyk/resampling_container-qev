@@ -1,0 +1,140 @@
+import numpy as np
+from .container import Container
+
+class Jackknife(Container):
+    def __init__(self, data):
+
+        if isinstance(data, list):
+            data = Container(data)
+
+        if isinstance(data, Jackknife):
+            samples = [x.copy() for x in data.samples]
+            centres = (
+                [x.copy() for x in data.centres]
+                if data.centres is not None else None
+            )
+
+        elif isinstance(data, Container):
+            n = len(data)
+
+            if n < 2:
+                raise ValueError("Jackknife requires at least two bins.")
+
+            total   = np.sum(data.samples, axis=0)
+            samples = [(total - x) / (n - 1) for x in data.samples]
+            centres = [total / n]
+
+        else:
+            raise TypeError("Input must be a list, Container or Jackknife.")
+
+        super().__init__(samples, centres)
+
+    @classmethod
+    def from_samples(cls, samples, centres=None):
+        obj = cls.__new__(cls)
+        Container.__init__(obj, samples, centres)
+        return obj
+
+    @property
+    def error(self):
+        n = len(self)
+
+        if n < 2:
+            raise ValueError("Jackknife requires at least two samples.")
+
+        samples = np.asarray(self.samples)
+        mean    = np.mean(samples, axis=0)
+        diff    = samples - mean
+
+        error_real = np.sqrt((n - 1) / n * np.sum(diff.real**2, axis=0))
+
+        if np.iscomplexobj(samples):
+            error_imag = np.sqrt((n - 1) / n * np.sum(diff.imag**2, axis=0))
+            return error_real + 1j * error_imag
+
+        return error_real
+
+    # Arithmetic operations
+    def _binary_op(self, other, op):
+
+        if isinstance(other, Jackknife):
+
+            if len(self) != len(other):
+                raise ValueError("Jackknife sample counts must match.")
+            
+            if self.shape != other.shape:
+                raise ValueError("Jackknife sample shapes must match.")
+
+            samples = [op(x, y) for x, y in zip(self.samples, other.samples)]
+
+            if self.centres is not None and other.centres is not None:
+
+                if len(self.centres) != len(other.centres):
+                    raise ValueError("Jackknife centre counts must match.")
+
+                centres = [op(x, y) for x, y in zip(self.centres, other.centres)]
+
+            else:
+                centres = None
+
+        elif np.isscalar(other) and isinstance(other, (int, float, complex, np.number)):
+
+            samples = [op(x, other) for x in self.samples]
+
+            centres = (
+                [op(x, other) for x in self.centres]
+                if self.centres is not None else None
+            )
+
+        else:
+            raise TypeError(f"Unsupported operand type: {type(other).__name__}")
+
+        return type(self).from_samples(samples, centres)
+
+    def __add__(self, other):
+        return self._binary_op(other, np.add)
+
+    def __radd__(self, other):
+        return self.__add__(other)
+
+    def __sub__(self, other):
+        return self._binary_op(other, np.subtract)
+
+    def __rsub__(self, other):
+        return self._binary_op(other, lambda x, y: np.subtract(y, x))
+
+    def __mul__(self, other):
+        return self._binary_op(other, np.multiply)
+
+    def __rmul__(self, other):
+        return self.__mul__(other)
+
+    def __truediv__(self, other):
+        return self._binary_op(other, np.divide)
+
+    def __rtruediv__(self, other):
+        return self._binary_op(other, lambda x, y: np.divide(y, x))
+
+    def __neg__(self):
+        return self * (-1)
+    
+    # io
+    def save(self, filename):
+        np.savez(
+            filename,
+            samples=np.asarray(self.samples),
+            centres=(
+                np.asarray(self.centres)
+                if self.centres is not None else np.empty((0, *self.shape))
+            ),
+        )
+
+    @classmethod
+    def load(cls, filename):
+        with np.load(filename, allow_pickle=False) as data:
+            samples = data["samples"]
+            centres = data["centres"]
+
+        centres = None if len(centres) == 0 else centres
+
+        return cls.from_samples(samples, centres)
