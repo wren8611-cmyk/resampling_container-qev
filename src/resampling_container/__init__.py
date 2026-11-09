@@ -1,5 +1,3 @@
-# resampling_container/__init__.py
-
 """
 resampling_container
 --------------------
