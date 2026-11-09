@@ -26,9 +26,7 @@ python -m pip install -e .
 
 ## Basic usage
 
-### Generate sample data
-
-Input data can be a list of NumPy arrays with identical shapes. This example generates 100 independent bins, each containing five observables.
+Let's prepare binned data (here we have 1 data for each bin, but in general we can have ndarray).
 
 ```python
 import numpy as np
