@@ -1,5 +1,5 @@
 import numpy as np
-from resampling_container import Container, Jackknife, Bootstrap
+from resampling_container import Jackknife, Bootstrap
 
 # Generate sample data
 rng = np.random.default_rng(1234)

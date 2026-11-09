@@ -4,7 +4,6 @@ A lightweight Python library for jackknife and bootstrap resampling of numerical
 
 The library provides three classes:
 
-- `Container`: Stores numerical samples and optional central values.
 - `Jackknife`: Performs leave-one-out jackknife resampling.
 - `Bootstrap`: Performs bootstrap resampling with replacement.
 
@@ -33,7 +32,7 @@ Input data can be a list of NumPy arrays with identical shapes. This example gen
 
 ```python
 import numpy as np
-from resampling_container import Container, Jackknife, Bootstrap
+from resampling_container import Jackknife, Bootstrap
 
 rng = np.random.default_rng(1234)
 nbins = 100
