@@ -71,6 +71,44 @@ Each bootstrap replica draws $N$ bins **with replacement** from the original $N$
 
 The optional `rng` argument accepts a NumPy `Generator` for reproducible resampling.
 
+# Accessing resampled data
+
+Both `Jackknife` and `Bootstrap` allow access to individual resampled values through `.samples`, indexing, and iteration.
+
+### Samples and indexing
+
+```python
+jk = Jackknife(data)
+
+# All resampled samples (a list of NumPy arrays)
+print(jk.samples)
+
+# First resampled sample
+print(jk.samples[0])
+print(jk[0])  # Equivalent
+
+# Number of resampled samples and shape of each sample
+print(len(jk))
+print(jk.shape)
+```
+
+The same operations are available for `Bootstrap` objects.
+
+### Iteration
+
+```python
+# Iterate over all jackknife samples
+for sample in jk:
+    print(sample)
+
+# Index and sample together
+for i, sample in enumerate(bs):
+    print(i, sample)
+```
+
+Each iteration yields a NumPy array representing one resampled sample.
+
+
 ## Arithmetic operations
 
 Both `Jackknife` and `Bootstrap` support elementwise addition, subtraction, multiplication, and division, including operations with numerical scalars.
