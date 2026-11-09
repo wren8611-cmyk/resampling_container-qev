@@ -54,7 +54,7 @@ print("Central value:", jk.centres[0])
 print("Statistical error:", jk.error)
 ```
 
-For \(N\) original bins, each jackknife sample excludes one bin.
+For $N$ original bins, each jackknife sample excludes one bin.
 
 ### Bootstrap
 
@@ -70,7 +70,7 @@ print("Central value:", bs.centres[0])
 print("Statistical error:", bs.error)
 ```
 
-Each bootstrap replica draws \(N\) bins **with replacement** from the original \(N\) bins and computes their mean. The bootstrap error is the sample standard deviation of the replicas.
+Each bootstrap replica draws $N$ bins **with replacement** from the original $N$ bins and computes their mean. The bootstrap error is the sample standard deviation of the replicas.
 
 The optional `rng` argument accepts a NumPy `Generator` for reproducible resampling.
 
@@ -144,3 +144,6 @@ print("Bootstrap error:", bs_complex.error)
 ```
 
 Errors for the real and imaginary components are calculated separately and returned as `error_real + 1j * error_imag`.
+
+## Version
+- 0.0.0: initial release
