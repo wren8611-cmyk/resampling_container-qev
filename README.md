@@ -104,7 +104,7 @@ result = bs1 / bs2
 
 The implementation checks that bootstrap replica counts, shapes, and stored RNG states match. Matching RNG states alone does not verify that the original bins correspond.
 
-## Saving and loading
+## FILE I/O
 
 Resampled data can be saved in NumPy `.npz` format.
 
