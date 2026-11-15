@@ -333,6 +333,11 @@ python tutorial/sample_code.py
 
 The tutorial demonstrates resampling, arithmetic operations, complex-valued data, multidimensional samples, reproducibility, and file I/O.
 
+## AI Disclosure
+
+This container was developed with the assistance of ChatGPT (GPT-6).
+Tests have been performed against other public libraries.
+
 ## Version
 
 - **0.0.0** — Initial release.
