@@ -1,4 +1,4 @@
-# resampling_container_qev
+# resampling_container-qev
 
 A lightweight Python library for jackknife and bootstrap resampling of numerical data.
 
