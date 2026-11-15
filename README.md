@@ -107,7 +107,7 @@ The bootstrap statistical error is estimated using the sample standard deviation
 $$
 \sigma_{\mathrm{BS}} =
 \sqrt{\frac{1}{B-1}\sum_{i=1}^{B}
-\left(x_{i}^{*}-\overline{x}^{*}\right)^2},
+\left(x_{i}^{\ast}-\overline{x}^{\ast}\right)^2},
 $$
 
 where $B$ is the number of bootstrap replicas.
