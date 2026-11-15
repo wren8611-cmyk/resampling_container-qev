@@ -1,10 +1,10 @@
 """
-End-to-end tutorial for resampling_container.
+End-to-end tutorial for resampling_container_qev.
 Run after installing the package: python tutorial/sample_code.py
 """
 from pathlib import Path
 import numpy as np
-from resampling_container import Container, Jackknife, Bootstrap
+from resampling_container_qev import Container, Jackknife, Bootstrap
 
 
 def show(label, obj):

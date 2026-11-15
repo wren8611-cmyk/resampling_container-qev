@@ -3,7 +3,7 @@ requires = ["setuptools>=61"]
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "resampling_container"
+name = "resampling_container_qev"
 version = "0.0.0"
 description = "A lightweight Python library for jackknife and bootstrap resampling"
 authors = [

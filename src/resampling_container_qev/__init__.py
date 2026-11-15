@@ -1,5 +1,5 @@
 """
-resampling_container
+resampling_container_qev
 --------------------
 A lightweight Python library for jackknife and bootstrap resampling.
 

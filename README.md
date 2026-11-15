@@ -1,4 +1,4 @@
-# resampling_container
+# resampling_container_qev
 
 A lightweight Python library for jackknife and bootstrap resampling of numerical data.
 
@@ -21,7 +21,7 @@ Clone the repository and install the package:
 
 ```bash
 git clone <repository-url>
-cd resampling_container
+cd resampling_container_qev
 python -m pip install -e .
 ```
 
@@ -31,7 +31,7 @@ Prepare a collection of binned data:
 
 ```python
 import numpy as np
-from resampling_container import Jackknife, Bootstrap
+from resampling_container_qev import Jackknife, Bootstrap
 
 rng = np.random.default_rng(1234)
 
